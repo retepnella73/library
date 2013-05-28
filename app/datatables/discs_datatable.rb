@@ -22,53 +22,27 @@ class DiscsDatatable
 private
 
   def data
-    if @delete_privilege
-      discs.map do |disc|
-        if params[:controller] == 'artists'
-          col2 = h(disc.disc_format.name)
-        else
-          col2 = h(disc.artist.full_name)
-        end
-        [
-          h(disc.sort_title),
-          h(disc.sort_artist),
-          link_to(disc.title, disc),
-          col2,
-          h(disc.release_year),
-          link_to('Edit', edit_disc_path(disc), :class => 'btn btn-small btn-warning') + ' ' + link_to('Delete', disc, method: :delete, data: { confirm: "Are you sure you wish to delete '#{disc.title}'?" }, :class => 'btn btn-small btn-danger')
-        ]
+    discs.map do |disc|
+      if params[:controller] == 'artists'
+        column2 = h(disc.disc_format.name)
+      else
+        column2 = h(disc.artist.full_name)
       end
-    elsif @edit_privilege
-      discs.map do |disc|
-        if params[:controller] == 'artists'
-          col2 = h(disc.disc_format.name)
-        else
-          col2 = h(disc.artist.full_name)
-        end
-        [
-          h(disc.sort_title),
-          h(disc.sort_artist),
-          link_to(disc.title, disc),
-          col2,
-          h(disc.release_year),
-          link_to('Edit', edit_disc_path(disc), :class => 'btn btn-small btn-warning') 
-        ]
+      if @delete_privilege
+        column4 = link_to('Edit', edit_disc_path(disc), :class => 'btn btn-small btn-warning') + ' ' + link_to('Delete', disc, method: :delete, data: { confirm: "Are you sure you wish to delete '#{disc.title}'?" }, :class => 'btn btn-small btn-danger')
+      elsif @edit_privilege
+        column4 = link_to('Edit', edit_disc_path(disc), :class => 'btn btn-small btn-warning') 
+      else
+        column4 = ''
       end
-    else
-      discs.map do |disc|
-        if params[:controller] == 'artists'
-          col2 = h(disc.disc_format.name)
-        else
-          col2 = h(disc.artist.full_name)
-        end
-        [
-          h(disc.sort_title),
-          h(disc.sort_artist),
-          link_to(disc.title, disc),
-          col2,
-          h(disc.release_year),
-        ]
-      end
+      [
+        h(disc.sort_title),
+        h(disc.sort_artist),
+        link_to(disc.title, disc),
+        column2,
+        h(disc.release_year),
+        column4
+      ]
     end
   end
 
