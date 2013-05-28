@@ -1,0 +1,86 @@
+<h2>
+  <%= @disc.title %>
+</h2>
+
+<!--div class="thumbnail over-table">
+  <%= cover_for @disc, :medium %>
+</div-->
+
+<h3>
+  <em>by </em>  <%= @disc.artist.full_name %>
+</h3>
+
+<table class="table">
+  <tr>
+    <th class="span2">Release Year</th>
+    <td><%= @disc.release_year %></td>
+  </tr>
+  <tr>
+    <th>Record Label</th>
+    <td><%= @disc.label.name %></td>
+  </tr>
+  <tr>
+    <th>Category</th>
+    <td><%= category_name(@disc) %></td>
+  </tr>
+  <tr>
+    <th>Genre</th>
+    <td><%= @disc.genre.name %></td>
+  </tr>
+  <tr>
+    <th>TOC</th>
+    <td><%= @disc.toc %></td>
+  </tr>
+  <tr>
+    <th>Catalog Number</th>
+    <td><%= @disc.catalog_number %></td>
+  </tr>
+  <tr>
+    <th>Format</th>
+    <td><%= @disc.disc_format.name %></td>
+  </tr>
+</table>
+
+<h3>Tracks</h3>
+  <% if @disc.tracks.empty? %>
+    <p><em>No Tracks for this Disc.</em></p>
+  <% else %>
+    <% if @disc.artist.name == 'Various Artists' %>
+      <% if permitted_to? :edit, @track %>
+        <table id="disc_tracks_artist_edit_table" class="display table table-striped">
+      <% else %>
+        <table id="disc_tracks_artist_table" class="display table table-striped">
+      <% end %>
+    <% else %>
+      <% if permitted_to? :edit, @track %>
+        <table id="disc_tracks_edit_table" class="display table table-striped">
+      <% else %>
+        <table id="disc_tracks_table" class="display table table-striped">
+      <% end %>
+    <% end %>
+    <thead>
+      <tr>
+        <th>Sort Title</th>
+        <th>Sort Artist</th>
+        <th class="span2">Number</th>
+        <th class="span5">Title</th>
+        <% if @disc.artist.name == 'Various Artists' %>
+          <th class="span5">Artist</th>
+        <% end %>
+        <th class="span2">Duration</th>
+          <% if permitted_to? :edit, @track %>
+            <th class="span2"></th>
+          <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render @disc.tracks.order('number') %>
+    </tbody>
+  </table>
+<% end %>  
+
+<hr />
+
+<%= link_to 'Edit Disc', edit_disc_path(@disc), :class => 'btn btn-warning' if permitted_to? :edit, @disc %>
+<%= link_to 'Back to Discs', discs_path, :class => 'btn btn-primary' %>
+

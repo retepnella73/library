@@ -1,0 +1,28 @@
+<h2><%= @role.name %></h2>
+<table class="table">
+  <tr>
+    <th class="span2">Description</th>
+    <td><%= @role.description %></td>
+  </tr>
+</table>
+
+<h3>Associated Users</h3>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Username</th>
+      <th>Email</th>
+      <th>&nbsp;</th>
+    </tr>
+
+  <tbody id="users">
+    <%= render @role.users %>
+  </tbody>
+</table>
+
+<hr />
+
+<%= link_to 'Edit Role', edit_role_path(@role), :class => 'btn btn-warning' %>
+<%= link_to 'Back to Roles', roles_path, :class => 'btn btn-primary' %>
+

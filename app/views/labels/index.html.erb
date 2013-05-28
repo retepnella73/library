@@ -1,0 +1,25 @@
+<h2>Record Labels</h2>
+
+<% if permitted_to? :edit, @label %>
+  <table id="labels_table_edit" class="display table table-striped" data-source="<%= labels_path(format: 'json') %>">
+<% else %>
+  <table id="labels_table" class="display table table-striped" data-source="<%= labels_path(format: 'json') %>">
+<% end %>
+  <thead>
+    <tr>
+      <th class="span8">Name</th>
+      <th class="span2">Discs</th>
+      <% if permitted_to? :edit, @label %>
+        <th class="span2">&nbsp;</th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody id="labels">
+    <%= render @labels %>
+  </tbody>
+</table>
+
+<hr />
+
+ <%= link_to 'New Label', new_label_path, :class => 'btn btn-warning' if permitted_to? :create, @label %>
+

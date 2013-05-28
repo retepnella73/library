@@ -1,0 +1,35 @@
+<h2><%= @label.name %></h2>
+
+<h3>Discs</h3>
+<% if @label.discs.empty? %>
+  <p><em>No Discs for this Record Label.</em></p>
+<% else %>
+  <% if permitted_to? :edit, @disc %>
+    <table id="label_discs_edit_table" class="table table-striped" data-source="<%= discs_path(format: 'json') %>">
+  <% else %>
+    <table id="label_discs_table" class="table table-striped" data-source="<%= discs_path(format: 'json') %>">
+  <% end %>
+    <thead>
+      <tr>
+        <th>Sort Title</th>
+        <th>Sort Artist</th>
+        <th class="span4">Title</th>
+        <th class="span4">Artist</th>
+        <th class="span2">Release Year</th>
+        <% if permitted_to? :edit, @disc %>
+          <th class="span2">&nbsp;</th>
+        <% end %>
+      </tr>
+    <tbody id="discs">
+      <%= render @label.discs.order('sort_title') %>
+    </tbody>
+  </table>
+<% end %>
+
+<hr />
+
+<% if permitted_to? :edit, @label %>
+  <%= link_to 'Edit Label', edit_label_path(@label), :class => 'btn btn-warning' %>
+<% end %>
+<%= link_to 'Back to Labels', labels_path, :class => 'btn btn-primary' %>
+

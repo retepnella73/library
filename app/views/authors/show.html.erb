@@ -1,0 +1,44 @@
+<h2>
+  <%= @author.full_name %>
+</h2>
+
+<table class="table">
+  <tr>
+    <th class="span2">First Name</th>
+    <td><%= @author.first_name %></td>
+  </tr>
+  <tr>
+    <th>Middle Name</th>
+    <td><%= @author.middle_name %></td>
+  </tr>
+  <tr>
+    <th>Last Name</th>
+    <td><%= @author.last_name %></td>
+  </tr>
+</table>
+
+<h3>Books</h3>
+<% if @author.books.empty? %>
+<p><em>No books by this author.</em></p>
+<% else %>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>ISBN</th>
+      <th>Publisher</th>
+      <th>Year</th>
+      <th>&nbsp;</th>
+    </tr>
+
+  <tbody id="books">
+    <%= render @author.books.order('sort_title') %>
+  </tbody>
+</table>
+<% end %>
+<hr />
+
+<% if permitted_to? :edit, @author %>
+  <%= link_to 'Edit Author', edit_author_path(@author), :class => 'btn btn-warning' %>
+<% end %>
+<%= link_to 'Back to Authors', authors_path, :class => 'btn btn-primary'  %>

@@ -1,0 +1,24 @@
+<h2>Formats</h2>
+
+<% if permitted_to? :edit, @disc_format %>
+  <table id="disc_formats_edit_table" class="table table-striped display" data-source="<%= disc_formats_path(format: 'json') %>">
+<% else %>
+  <table id="disc_formats_table" class="table table-striped display" data-source="<%= disc_formats_path(format: 'json') %>">
+<% end %>
+  <thead>
+    <tr>
+      <th class="span8">Name</th>
+      <th class="span2">Discs</th>
+      <% if permitted_to? :edit, @disc_format %>
+        <th class="span2">&nbsp;</th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody id="disc_formats">
+    <%= render @disc_formats %>
+  </tbody>
+</table>
+
+<hr />
+
+<%= link_to 'New Format', new_disc_format_path, :class => 'btn btn-warning' if permitted_to? :create, @disc_format %>

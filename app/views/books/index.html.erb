@@ -1,0 +1,30 @@
+<h2>Books</h2>
+
+<% if permitted_to? :edit, @book %>
+  <table id="books_edit_table" class="table table-striped" data-source="<%= books_path(format: 'json') %>">
+<% else %>
+  <table id="books_table" class="table table-striped" data-source="<%= books_path(format: 'json') %>">
+<% end %>
+  <thead>
+    <tr>
+      <th>Title Sort</th>
+      <th>Author Sort</th>
+      <th>Publisher Sort</th>
+      <th class="span4">Title</th>
+      <th class="span4">Author</th>
+      <th class="span4">Publisher</th>
+      <th class="span2">Year</th>
+      <% if permitted_to? :edit, @book %>
+        <th class="span2">&nbsp;</th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody id="books">
+    <%= render @books %>
+  </tbody>
+</table>
+
+<hr />
+
+<%= link_to 'New Book', new_book_path, :class => 'btn btn-warning' if permitted_to? :create, @book %>
+

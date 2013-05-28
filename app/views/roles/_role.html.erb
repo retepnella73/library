@@ -1,0 +1,11 @@
+<tr>
+  <td><%= link_to role.name, role %></td>
+  <td><%= role.description %></td>
+  <td class="text-right">
+    <%= link_to 'Edit', edit_role_path(role), :class => 'btn btn-small btn-warning' %>
+    <%= link_to 'Delete', role, method: :delete, 
+                data: { confirm: "Are you sure you wish to delete '#{role.name}'?" },
+                :class => 'btn btn-small btn-danger' %>
+  </td>
+</tr>
+

@@ -1,0 +1,21 @@
+<h2>Genres</h2>
+
+<form class="form-horizontal">
+  <div class="control-group">
+    <div class="control-label">
+      Select a Category
+    </div>
+    <div class="controls">
+      <%= collection_select(:genre, :category_id, @categories, :id, :name, {:prompt => false}) %>
+    </div>
+  </div>
+</form>
+
+<div id="genresDiv">
+  <%= render :partial => 'genres', :object => @genres %>
+</div>
+
+<hr />
+<% if permitted_to? :create, @genre %>
+<%= link_to 'New Genre', new_genre_path, :class => 'btn btn-warning' %>
+<% end %>

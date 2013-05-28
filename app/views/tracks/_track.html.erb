@@ -1,0 +1,21 @@
+<tr>
+  <td><%= track.sort_title %></td>
+  <td><%= track.artist.name %></td>
+  <td><%= track.number %></td>
+  <td><%= link_to track.title_and_mix, disc_track_path(@disc, track) %></td>
+  <% if track.disc.artist.name == 'Various Artists' %>
+    <td><%= track.artist.full_name %></td>
+  <% end %>
+  <td><%= track.minutes %>m <%= '%02d' % track.seconds %>s</td>
+  <% if permitted_to? :edit, track %>
+    <td>
+      <%= link_to 'Edit', edit_disc_track_path(@disc, track), :class => 'btn btn-small btn-warning' %>
+    <% if permitted_to? :destroy, track %>
+      <%= link_to 'Delete', [@disc, track], method: :delete, 
+                  data: { confirm: "Are you sure you wish to delete '#{track.title}'?" }, 
+                  :class => 'btn btn-small btn-danger' %>
+    <% end %>
+    </td>
+  <% end %>
+</tr>
+

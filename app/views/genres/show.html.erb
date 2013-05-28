@@ -1,0 +1,40 @@
+<h2><%= @genre.name %></h2>
+
+<table class="table">
+  <tr>
+    <th class="span2">Category</th>
+    <td><%= @category.name %></td>
+  </tr>
+</table>
+
+<h3>Discs</h3>
+<% if @genre.discs.empty? %>
+  <p><em>No Discs for this Genre.</em></p>
+<% else %>
+  <% if permitted_to? :edit, @disc %>
+    <table id="label_discs_edit_table" class="table table-striped">
+  <% else %>
+    <table id="label_discs_table" class="table table-striped">
+  <% end %>
+    <thead>
+      <tr>
+        <th>Sort Title</th>
+        <th>Sort Artist</th>
+        <th class="span4">Title</th>
+        <th class="span4">Artist</th>
+        <th class="span2">Release Year</th>
+        <% if permitted_to? :edit, @disc %>
+          <th class="span2">&nbsp;</th>
+        <% end %>
+      </tr>
+    <tbody id="discs">
+      <%= render @genre.discs.order('sort_title') %>
+    </tbody>
+  </table>
+<% end %>
+
+<hr />
+<% if permitted_to? :edit, @genre %>
+<%= link_to 'Edit Genre', edit_genre_path(@genre), :class => 'btn btn-warning' %>
+<% end %>
+<%= link_to 'Back to Genres', genres_path, :class => 'btn btn-primary' %>

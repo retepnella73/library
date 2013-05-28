@@ -1,0 +1,16 @@
+<tr>
+  <td><%= author.sort_name %></td>
+  <td><%= link_to author.full_name, author %></td>
+  <td class="text-center"><%= author.works.count %></td>
+  <% if permitted_to? :edit, author %>
+    <td class="text-right">
+      <%= link_to 'Edit', edit_author_path(author), :class => 'btn btn-small btn-warning' %>
+      <% if permitted_to? :destroy, author %>
+        <%= link_to 'Delete', author, method: :delete, 
+                    data: { confirm: "Are you sure you wish to delete '#{author.full_name}'?" },
+                    :class => 'btn btn-small btn-danger' %>
+      <% end %>
+    </td>
+  <% end %>
+</tr>
+

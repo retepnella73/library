@@ -1,0 +1,30 @@
+<h2>Discs</h2>
+
+<% if permitted_to? :edit, @disc %>
+  <table id="discs_edit_table" class="table table-striped" data-source="<%= discs_path(format: 'json') %>">
+<% else %>
+  <table id="discs_table" class="table table-striped" data-source="<%= discs_path(format: 'json') %>">
+<% end %>
+  <thead>
+    <tr>
+      <th>Sort Title</th>
+      <th>Sort Artist</th>
+      <th class="span4">Title</th>
+      <th class="span4">Artist</th>
+      <th class="span2">Release year</th>
+      <% if permitted_to? :edit, @disc %>
+        <th class="span2">&nbsp;</th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody id="discs">
+    <%= render @discs %>
+  </tbody>
+</table>
+
+<hr />
+
+<% if permitted_to? :create, @disc %>
+  <%= link_to 'New Disc', new_disc_path, :class => 'btn btn-warning' %>
+  <%= link_to 'Import Tracks', import_disc_tracks_path(@discs.first), :class => 'btn btn-warning' %>
+<% end %>

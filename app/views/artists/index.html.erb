@@ -1,0 +1,29 @@
+<h2>Artists</h2>
+
+<% if permitted_to? :edit, @artist %>
+  <table id="artists_edit_table" class="table table-striped display" data-source="<%= artists_path(format: 'json') %>">
+<% else %>
+  <table id="artists_table" class="table table-striped display" data-source="<%= artists_path(format: 'json') %>">
+<% end %>
+  <thead>
+    <tr>
+      <th>Sort Name</th>
+      <th class="span6">Name</th>
+      <th class="span2">Discs</th>
+      <th class="span2">Tracks</th>
+      <% if permitted_to? :edit, @artist %>
+        <th class="span2"></th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody id="artists">
+    <%= render @artists %>
+  </tbody>
+</table>
+
+<hr />
+
+<% if permitted_to? :create, @artist %>
+  <%= link_to 'New Artist', new_artist_path, :class => 'btn btn-warning' %>
+  <%= link_to 'Import Artists', import_artists_path, :class => 'btn btn-warning' %>
+<% end %>

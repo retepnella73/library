@@ -1,0 +1,16 @@
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th class="span9">Name</th>
+    <th class="span1">Discs</th>
+    <% if permitted_to? :edit, @genres %>
+      <th class="span2"></th>
+    <% end %>
+  </tr>
+  </thead>
+  <tbody id="genres">
+    <%= render @genres %>
+  </tbody>
+</table>
+<p><em><%= pluralize(@total_records, 'Genre') %> for <%= @category.name %>.</em></p>
+

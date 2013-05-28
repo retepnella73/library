@@ -1,0 +1,140 @@
+<%= form_for(@book, :html => { :class => 'form-horizontal' }) do |f| %>
+  <% if @book.errors.any? %>
+    <div id="error_explanation">
+      <p class="notification flash_error">
+        <%= pluralize(@book.errors.count, "error") %> prohibited this book from being saved:
+      </p>
+
+      <ul>
+      <% @book.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<fieldset>
+  <legend id="book_general_details_toggle">General Details</legend>
+  <div id="book_general_details">
+  <div class="control-group">
+    <div class="control-label">
+      <%= f.label :title %>
+    </div>
+    <div class="controls">
+      <%= f.text_field :title, :placeholder => 'Book Title', autofocus: true %>
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="control-label">
+      <%= f.label :author_ids, 'Author(s)' %>
+    </div>
+    <div class="controls">
+      <%= f.select :author_ids, Author.order('last_name').collect {|a| [a.full_name, a.id]}, {}, :multiple => true %>
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="control-label">
+      <%= f.label :ISBN, 'ISBN' %>
+    </div>
+    <div class="controls">
+      <%= f.text_field :ISBN, :placeholder => '10 or 13 digit ISBN' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="control-label">
+      <%= f.label :page_count, 'Pages' %>
+    </div>
+    <div class="controls">
+      <%= f.number_field :page_count, :placeholder => 'Number of pages' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="control-label">
+      <%= f.label :binding %>
+    </div>
+    <div class="controls">
+      <%= f.select :binding, Book::Binding, :prompt => 'Select the Binding' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="control-label">
+      <%= f.label :publisher_id %>
+    </div>
+    <div class="controls">
+      <%= collection_select(:book, :publisher_id, Publisher.order('sort_name'), :id, :name, {:prompt => "Select a Publisher"}) %>
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="control-label">
+      <%= f.label :year %>
+    </div>
+    <div class="controls">
+      <%= f.number_field :year, :placeholder => 'Year of this publication' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="control-label">
+      <%= f.label :edition %>
+    </div>
+    <div class="controls">
+      <%= f.text_field :edition, :placeholder => '1st, Revised, etc.' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="control-label">
+      <%= f.label :first_published, 'Year First Published' %>
+    </div>
+    <div class="controls">
+      <%= f.number_field :first_published, :placeholder => 'Year of first publication' %>
+    </div>
+  </div>
+</fieldset>
+<fieldset>
+  <legend id="book_dimensions_toggle">Dimensions</legend>
+  <div id="book_dimensions">
+  <div class="control-group">
+    <div class="control-label">
+      <%= f.label :width, 'Width (mm)' %>
+    </div>
+    <div class="controls">
+      <%= f.number_field :width, :placeholder => 'Width in millimetres' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="control-label">
+      <%= f.label :height, 'Height (mm)' %>
+    </div>
+    <div class="controls">
+      <%= f.number_field :height, :placeholder => 'Height in millimetres' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="control-label">
+      <%= f.label :thickness, 'Thickness (mm)' %>
+    </div>
+    <div class="controls">
+      <%= f.number_field :thickness, :placeholder => 'Thickness in millimetres' %>
+    </div>
+  </div>
+  </div>
+</fieldset>
+<fieldset>
+  <legend id="book_extra_details_toggle">Extra Information</legend>
+  <div id="book_extra_details">
+  <div class="control-group">
+    <div class="control-label">
+      <%= f.label :details, 'Notes' %>
+    </div>
+    <div class="controls">
+      <%= f.text_area :details, :rows => 5, :class => 'span6', :placeholder => 'Any extra information...' %>
+    </div>
+  </div>
+  </div>
+</fieldset>
+<div class="control-group">
+  <div class="form-actions">
+    <%= f.submit :class => 'btn btn-warning' %>
+    <%= submit_tag 'Cancel', :type => 'button', :class => 'btn btn-info', 
+                   :onclick => "location.href = '#{books_path()}'" %>
+  </div>
+</div>
+<% end %>

@@ -1,0 +1,22 @@
+<h2>Tracks</h2>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th class="span1">Number</th>
+      <th class="span4">Title</th>
+      <th class="span4">Mix</th>
+      <th class="span1">Duration</th>
+      <% if permitted_to? :edit, @track %>
+        <th></th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render @tracks %>
+  </tbody>
+</table>
+
+<hr />
+
+<%= link_to 'New Track', new_disc_track_path, :class => 'btn btn-warning' %>

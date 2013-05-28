@@ -1,0 +1,31 @@
+<%= form_for(@disc_format, :html => { :class => 'form-horizontal' }) do |f| %>
+  <% if @disc_format.errors.any? %>
+    <div id="error_explanation">
+      <p class="notification flash_error">
+        <%= pluralize(@disc_format.errors.count, "error") %> prohibited this Format from being saved:
+      </p>
+
+      <ul>
+      <% @disc_format.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="control-group">
+    <div class="control-label">
+      <%= f.label :name %>
+    </div>
+    <div id="genre_select" class="controls">
+      <%= f.text_field :name %>
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="form-actions">
+      <%= f.submit :class => 'btn btn-warning' %>
+      <%= submit_tag 'Cancel', :type => 'button', :class => 'btn btn-info', 
+                     :onclick => "location.href = '#{disc_formats_path()}'" %>
+    </div>
+  </div>
+<% end %>

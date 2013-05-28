@@ -1,0 +1,15 @@
+<tr>
+  <td><%= link_to genre.name, genre %></td>
+  <td><%= genre.discs.count %></td>
+  <% if permitted_to? :edit, genre %>
+    <td>
+      <%= link_to 'Edit', edit_genre_path(genre), :class => 'btn btn-small btn-warning' %>
+      <% if permitted_to? :destroy, genre %>
+        <%= link_to 'Delete', genre, method: :delete, 
+                    data: { confirm: "Are you sure you wish to delete '#{genre.name}'?" }, 
+                    :class => 'btn btn-small btn-danger' %>
+      <% end %>
+    </td>
+  <% end %>
+</tr>
+

@@ -1,0 +1,29 @@
+<h2><%= @track.title %></h2>
+<h3><em>on </em><%= @track.disc.title %> [<%= @track.disc.format.name %>]</h3>
+<h4><em>by </em><%= @track.disc.artist.full_name %></h4>
+
+<table class="table">
+  <tr>
+    <th class="span2">Number</th>
+    <td><%= @track.number %></td>
+  </tr>
+  <tr>
+    <th>Mix</th>
+    <td><%= @track.mix %></td>
+  </tr>
+  <tr>
+    <th>Duration</th>
+    <td><%= @track.minutes %>m <%= '%02d' % @track.seconds %>s</td>
+  </tr>
+  <% if @track.disc.artist.name == 'Various Artists' %>
+  <tr>
+    <th>Artist</th>
+    <td><%= @track.artist.full_name %>
+  </tr>
+  <% end %>
+</table>
+
+<hr />
+
+<%= link_to 'Edit Track', edit_disc_track_path(@disc, @track), :class => 'btn btn-warning' %>
+<%= link_to 'Back to Disc', disc_path(@disc), :class => 'btn btn-primary' %>

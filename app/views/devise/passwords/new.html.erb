@@ -1,0 +1,28 @@
+<h2>Forgot Your Password?</h2>
+
+<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post, :class => 'form-horizontal' }) do |f| %>
+  <%= devise_error_messages! %>
+  <div class="control-group">
+    <div class="control-label">
+      <%= f.label :username %>
+    </div>
+    <div class="controls">
+      <%= f.text_field :username, :autofocus => true, :placeholder => 'Your unique Username' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="control-label">
+      <%= f.label :email %>
+    </div>
+    <div class="controls">
+      <%= f.email_field :email, :placeholder => 'Your Email Address' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="form-actions">
+      <%= f.submit "Send Reset Instructions", :class => 'btn btn-primary' %>
+      <%= submit_tag 'Resend Confirmation?', :type => 'button', :class => 'btn', :onclick => "location.href = '#{new_user_confirmation_path()}'" %>
+    </div>
+  </div>
+<% end %>
+

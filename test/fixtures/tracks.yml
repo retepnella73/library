@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  number: 1
+  title: MyString
+  sort_title: MyString
+  mix: MyString
+  duration: 1
+  disc_id: 1
+  artist_id: 1
+
+two:
+  number: 1
+  title: MyString
+  sort_title: MyString
+  mix: MyString
+  duration: 1
+  disc_id: 1
+  artist_id: 1

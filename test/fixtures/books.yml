@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  title: MyString
+  sort_title: MyString
+  ISBN: MyString
+  year: 1
+  first_published: 1
+  edition: MyString
+  page_count: 1
+  width: 1
+  height: 1
+  thickness: 1
+  details: MyText
+
+two:
+  title: MyString
+  sort_title: MyString
+  ISBN: MyString
+  year: 1
+  first_published: 1
+  edition: MyString
+  page_count: 1
+  width: 1
+  height: 1
+  thickness: 1
+  details: MyText

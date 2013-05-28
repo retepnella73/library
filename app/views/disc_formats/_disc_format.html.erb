@@ -1,0 +1,17 @@
+<tr>
+  <td><%= link_to disc_format.name, disc_format %></td>
+  <td><%= disc_format.discs.count %></td>
+  <% if permitted_to? :edit, @disc_format %>
+    <td>
+      <%= link_to 'Edit', edit_disc_format_path(disc_format), :class => 'btn btn-small btn-warning' %>
+    <% if permitted_to? :destroy, @disc_format %>  
+      <%= link_to 'Delete', 
+                  disc_format, 
+                  method: :delete, 
+                  data: { confirm: "Are you sure you wish to delete '#{disc_format.name}'?" },
+                  :class => 'btn btn-small btn-danger' %>
+    <% end %>
+    </td>
+  <% end %>
+</tr>
+

@@ -1,0 +1,18 @@
+<h2>Roles</h2>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th class="span5">Name</th>
+      <th class="span5">Description</th>
+      <th class="span2">&nbsp;</th>
+    </tr>
+  </thead>
+  <tbody id="publishers">
+    <%= render @roles %>
+  </tbody>
+</table>
+
+<hr />
+
+<%= link_to 'New Role', new_role_path, :class => 'btn btn-warning' %>

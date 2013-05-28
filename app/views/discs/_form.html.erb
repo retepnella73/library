@@ -1,0 +1,99 @@
+<%= form_for(@disc, :html => { :class => 'form-horizontal' }) do |f| %>
+  <% if @disc.errors.any? %>
+    <div id="error_explanation">
+      <p class="notification flash_error">
+        <%= pluralize(@disc.errors.count, "error") %> prohibited this Disc from being saved:
+      </p>
+
+      <ul>
+      <% @disc.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="control-group">
+    <div class="control-label">
+      <%= f.label :title %>
+    </div>
+    <div class="controls">
+      <%= f.text_field :title %>
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="control-label">
+      <%= f.label :artist_id %>
+    </div>
+    <div class="controls">
+      <%= collection_select(:disc, :artist_id, Artist.order('name'), :id, :full_name, {:prompt => "Select an Artist"}) %>
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="control-label">
+      <%= f.label :release_year %>
+    </div>
+    <div class="controls">
+      <%= f.number_field :release_year %>
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="control-label">
+      <%= f.label :toc %>
+    </div>
+    <div class="controls">
+      <%= f.text_field :toc %>
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="control-label">
+      <%= f.label :catalog_number %>
+    </div>
+    <div class="controls">
+      <%= f.text_field :catalog_number %>
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="control-label">
+      <%= f.label :label_id %>
+    </div>
+    <div class="controls">
+      <%= collection_select(:disc, :label_id, Label.order('name'), :id, :name, {:prompt => "Select a Record Label"}) %>
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="control-label">
+      Category
+    </div>
+    <div class="controls">
+      <%= select('selected_category', 'id', 
+                @categories.map {|c| [c.name, c.id]}, 
+                {:prompt => 'Select a Category'}, 
+                {:selected => @selected_category ? @selected_category : '',
+                 data: {discid: @disc.id}}) %>
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="control-label">
+      <%= f.label :genre_id %>
+    </div>
+    <div id="genre_select" class="controls">
+      <%= render :partial => 'discs/genres', :object => @genres %>
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="control-label">
+      <%= f.label :cover, 'Cover Art' %>
+    </div>
+    <div class="controls">
+      <%= f.file_field :cover %>
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="form-actions">
+      <%= f.submit :class => 'btn btn-warning' %>
+      <%= submit_tag 'Cancel', :type => 'button', :class => 'btn btn-info', 
+                     :onclick => "location.href = '#{discs_path()}'" %>
+    </div>
+  </div>
+<% end %>

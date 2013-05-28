@@ -1,0 +1,39 @@
+<%= form_for(@publisher, :html => { :class => 'form-horizontal' }) do |f| %>
+  <% if @publisher.errors.any? %>
+    <div id="error_explanation">
+      <p class="notification flash_error">
+        <%= pluralize(@publisher.errors.count, "error") %> prohibited this publisher from being saved:
+      </p>
+
+      <ul>
+      <% @publisher.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="control-group">
+    <div class="control-label">
+      <%= f.label :name %>
+    </div>
+    <div class="controls">
+      <%= f.text_field :name %>
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="control-label">
+      <%= f.label :location %>
+    </div>
+    <div class="controls">
+      <%= f.text_field :location %>
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="form-actions">
+      <%= f.submit :class => 'btn btn-warning' %>
+      <%= submit_tag 'Cancel', :type => 'button', :class => 'btn btn-info', 
+                     :onclick => "location.href = '#{publishers_path()}'" %>
+    </div>
+  </div>
+<% end %>

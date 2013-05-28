@@ -1,0 +1,18 @@
+<h2>Import</h2>
+<p>Import Track Data from a CSV file.</p>
+
+<%= form_tag import_disc_tracks_path(@disc), :multipart => true, :class => 'form-horizontal' do |f| %>
+  <div class="control-group">
+    <div class="control-label">
+      <%= label_tag :file %>
+    </div>
+    <div class="controls">
+      <%= file_field_tag :file %>
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="form-actions">
+      <%= submit_tag 'Upload' %>
+    </div>
+  </div>
+<% end %>

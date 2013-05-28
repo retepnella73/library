@@ -1,0 +1,2 @@
+$('#artists').html('<%= escape_javascript render(@artists) %>');
+$('#paginator').html('<%= escape_javascript(paginate(@artists, :remote => true).to_s) %>');

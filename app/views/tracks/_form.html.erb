@@ -1,0 +1,63 @@
+<%= form_for([@disc, @track], :html => { :class => 'form-horizontal' }) do |f| %>
+  <% if @track.errors.any? %>
+    <div id="error_explanation">
+      <p class="notification flash_error">
+        <%= pluralize(@track.errors.count, "error") %> prohibited this season from being saved.
+      </p>
+
+      <ul>
+      <% @track.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="control-group">
+    <div class="control-label">
+      <%= f.label :number %>
+    </div>
+    <div class="controls">
+      <%= f.number_field :number %>
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="control-label">
+      <%= f.label :title %>
+    </div>
+    <div class="controls">
+      <%= f.text_field :title %>
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="control-label">
+      <%= f.label :mix %>
+    </div>
+    <div class="controls">
+      <%= f.text_field :mix %>
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="control-label">
+      <%= f.label :duration %>
+    </div>
+    <div class="controls">
+      <%= f.number_field :duration %>
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="control-label">
+      <%= f.label :artist_id %>
+    </div>
+    <div class="controls">
+      <%= f.number_field :artist_id %>
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="form-actions">
+      <%= f.submit :class => 'btn btn-warning' %>
+      <%= submit_tag 'Cancel', :type => 'button', :class => 'btn btn-info', 
+                     :onclick => "location.href = '#{disc_tracks_path(@disc)}'" %>
+    </div>
+  </div>
+<% end %>

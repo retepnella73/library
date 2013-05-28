@@ -1,0 +1,38 @@
+<h2><%= @disc_format.name %></h2>
+<table class="table">
+  <tr>
+    <th class="span2">Name</th>
+    <td><%= @disc_format.name %></td>
+  </tr>
+</table>
+
+<h3>Discs</h3>
+<% if @discs.empty? %>
+  <p><em>No Discs in this Format.</em></p>
+<% else %>
+  <% if permitted_to? :edit, @disc %>
+    <table id="label_discs_edit_table" class="table table-striped" data-source="<%= disc_format_path(@disc_format, format: 'json') %>" >
+  <% else %>
+    <table id="label_discs_table" class="table table-striped" data-source="<%= disc_format_path(@disc_format, format: 'json') %>" >
+  <% end %>
+    <thead>
+      <tr>
+        <th>Sort Title</th>
+        <th>Sort Artist</th>
+        <th class="span4">Title</th>
+        <th class="span4">Artist</th>
+        <th class="span2">Release Year</th>
+        <% if permitted_to? :edit, @disc %>
+          <th class="span2">&nbsp;</th>
+        <% end %>
+      </tr>
+    <tbody id="discs">
+      <%= render @discs.order('sort_title') %>
+    </tbody>
+  </table>
+<% end %>
+
+<hr />
+
+<%= link_to 'Edit Format', edit_disc_format_path(@disc_format), :class => 'btn btn-warning' if permitted_to? :edit, @disc_format %>
+<%= link_to 'Back to Formats', disc_formats_path, :class => 'btn btn-primary' %>

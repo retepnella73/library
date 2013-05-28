@@ -1,0 +1,32 @@
+<ul class="nav nav-tabs">
+  <% if controller.controller_name == 'discs' %>
+    <li class="active">
+  <% else %>
+    <li>
+  <% end %>
+  <%= link_to 'Discs', discs_path %></li>
+  <% if controller.controller_name == 'artists' %>
+    <li class="active">
+  <% else %>
+    <li>
+  <% end %>
+  <%= link_to 'Artists', artists_path %></li>
+  <% if controller.controller_name == 'genres' %>
+    <li class="active">
+  <% else %>
+    <li>
+  <% end %>
+  <%= link_to 'Genres', genres_path %></li>
+  <% if controller.controller_name == 'labels' %>
+    <li class="active">
+  <% else %>
+    <li>
+  <% end %>
+  <%= link_to 'Labels', labels_path %></li>
+  <% if controller.controller_name == 'disc_formats' %>
+    <li class="active">
+  <% else %>
+    <li>
+  <% end %>
+  <%= link_to 'Formats', disc_formats_path %></li>
+</ul>

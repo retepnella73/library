@@ -1,0 +1,37 @@
+<h2>
+  <%= @publisher.name %>
+</h2>
+
+<table class="table">
+  <tr>
+    <th class="span2">Location</th>
+    <td><%= @publisher.location %></td>
+  </tr>
+</table>
+
+<h3>Books</h3>
+<% if @publisher.books.empty? %>
+  <p><em>No books for this Publisher.</em></p>
+<% else %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>ISBN</th>
+        <th>Year</th>
+        <th>&nbsp;</th>
+      </tr>
+    <tbody id="books">
+      <%= render @publisher.books.order('sort_title') %>
+    </tbody>
+  </table>
+<% end %>
+
+<hr />
+
+<% if permitted_to? :edit, @publisher %>
+  <%= link_to 'Edit Publisher', edit_publisher_path(@publisher), :class => 'btn btn-warning' %>
+<% end %>
+<%= link_to 'Back to Publishers', publishers_path, :class => 'btn btn-primary' %>
+

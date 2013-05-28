@@ -1,0 +1,39 @@
+<%= form_for(@role, :html => { :class => 'form-horizontal' }) do |f| %>
+  <% if @role.errors.any? %>
+    <div id="error_explanation">
+      <p class="notification flash_error">
+        <%= pluralize(@role.errors.count, "error") %> prohibited this role from being saved:
+      </p>
+
+      <ul>
+      <% @role.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="control-group">
+    <div class="control-label">
+      <%= f.label :name %>
+    </div>
+    <div class="controls">
+      <%= f.text_field :name, :placeholder => 'New Role Name' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="control-label">
+      <%= f.label :description %>
+    </div>
+    <div class="controls">
+      <%= f.text_field :description, :placeholder => 'Short Description' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="form-actions">
+      <%= f.submit :class => 'btn btn-warning' %>
+      <%= submit_tag 'Cancel', :type => 'button', :class => 'btn btn-info', 
+                     :onclick => "location.href = '#{roles_path()}'" %>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,48 @@
+<h2><%= @artist.full_name %></h2>
+
+<table class="table">
+  <tr>
+    <th class="span2">Prefix</th>
+    <td><%= @artist.pre_name %></td>
+  </tr>
+  <tr>
+    <th>First Name</th>
+    <td><%= @artist.first_name %></td>
+  </tr>
+  <tr>
+    <th>Name</th>
+    <td><%= @artist.name %></td>
+  </tr>
+</table>
+
+<h3>Discs</h3>
+<% if @artist.discs.empty? %>
+  <p><em>No Discs by this Artist.</em></p>
+<% else %>
+  <% if permitted_to? :edit, @artist %>
+    <table id="artist_discs_edit_table" class="table table-striped" data-source="<%= artist_path(@artist, format: 'json') %>" >
+  <% else %>
+    <table id="artist_discs_table" class="table table-striped" data-source="<%= artist_path(@artist, format: 'json') %>" >
+  <% end %>
+    <thead>
+      <tr>
+        <th>Sort Title</th>
+        <th>Sort Artist</th>
+        <th class="span4">Title</th>
+        <th class="span4">Format</th>
+        <th class="span2">Release Year</th>
+        <% if permitted_to? :edit, @disc %>
+          <th class="span2">&nbsp;</th>
+        <% end %>
+      </tr>
+    <tbody id="discs">
+      <%= render @artist.discs.order('sort_title') %>
+    </tbody>
+  </table>
+<% end %>
+
+<hr />
+
+<%= link_to 'Edit Artist', edit_artist_path(@artist), :class => 'btn btn-warning' if permitted_to? :edit, @artist %>
+<%= link_to 'Back to Artists', artists_path, :class => 'btn btn-primary' %>
+

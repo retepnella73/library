@@ -1,0 +1,27 @@
+<h2>Publishers</h2>
+
+<% if permitted_to? :edit, @publisher %>
+  <table id="publishers_edit_table" class="table table-striped" data-source="<%= publishers_path(format: 'json') %>">
+<% else %>
+  <table id="publishers_table" class="table table-striped" data-source="<%= publishers_path(format: 'json') %>">
+<% end %>
+  <thead>
+    <tr>
+      <th>sort_name</th>
+      <th class="span5">Name</th>
+      <th class="span4">Location</th>
+      <th class="span1">Books</th>
+      <% if permitted_to? :edit, @publisher %>
+        <th class="span2">&nbsp;</th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody id="publishers">
+    <%= render @publishers %>
+  </tbody>
+</table>
+
+<hr />
+
+<%= link_to 'New Publisher', new_publisher_path, :class => 'btn btn-warning' if permitted_to? :create, @publisher %>
+
