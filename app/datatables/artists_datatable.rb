@@ -21,35 +21,21 @@ class ArtistsDatatable
 private
 
   def data
-    if @delete_privilege
-      artists.map do |artist|
-        [
-          h(artist.name),
-          link_to(artist.full_name, artist),
-          h(artist.discs.count),
-          h(artist.tracks.count),
-          link_to('Edit', edit_artist_path(artist), :class => 'btn btn-small btn-warning') + ' ' + link_to('Delete', artist, method: :delete, data: { confirm: "Are you sure you wish to delete '#{artist.full_name}'?" }, :class => 'btn btn-small btn-danger')
-        ]
+    artists.map do |artist|
+      if @delete_privilege
+        column4 = link_to('Edit', edit_artist_path(artist), :class => 'btn btn-small btn-warning') + ' ' + link_to('Delete', artist, method: :delete, data: { confirm: "Are you sure you wish to delete '#{artist.full_name}'?" }, :class => 'btn btn-small btn-danger')
+      elsif @edit_privilege
+        column4 = link_to('Edit', edit_artist_path(artist), :class => 'btn btn-small btn-warning')
+      else
+        column4 = ''
       end
-    elsif @edit_privilege
-      artists.map do |artist|
-        [
-          h(artist.name),
-          link_to(artist.full_name, artist),
-          h(artist.discs.count),
-          h(artist.tracks.count),
-          link_to('Edit', edit_artist_path(artist), :class => 'btn btn-small btn-warning') 
-        ]
-      end
-    else
-      artists.map do |artist|
-        [
-          h(artist.name),
-          link_to(artist.full_name, artist),
-          h(artist.discs.count),
-          h(artist.tracks.count)
-        ]
-      end
+      [
+        h(artist.name),
+        link_to(artist.full_name, artist),
+        h(artist.discs.count),
+        h(artist.tracks.count),
+        column4   
+      ]
     end
   end
 

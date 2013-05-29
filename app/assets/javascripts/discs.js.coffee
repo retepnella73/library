@@ -21,6 +21,7 @@ jQuery ->
     sPaginationType: "bootstrap"
     bJQueryUI: true
     iDisplayLength: 10
+    bStateSave: true
     aoColumnDefs: [
       iDataSort: 0
       aTargets: [2]
@@ -36,7 +37,6 @@ jQuery ->
     ]
     oLanguage: 
       sProcessing: "<img src='/assets/loading.gif'>"
-    bStateSave: true
     bProcessing: true
     bServerSide: true
     sAjaxSource: $('#discs').data('source')
@@ -67,7 +67,6 @@ jQuery ->
     ]
     oLanguage: 
       sProcessing: "<img src='/assets/loading.gif'>"
-    bStateSave: true
     bProcessing: true
     bServerSide: true
     sAjaxSource: $('#labels').data('source')
@@ -94,7 +93,6 @@ jQuery ->
     ]
     oLanguage: 
       sProcessing: "<img src='/assets/loading.gif'>"
-    bStateSave: true
     bProcessing: true
     bServerSide: true
     sAjaxSource: $('#discs').data('source')
@@ -125,7 +123,6 @@ jQuery ->
     ]
     oLanguage: 
       sProcessing: "<img src='/assets/loading.gif'>"
-    bStateSave: true
     bProcessing: true
     bServerSide: true
     sAjaxSource: $('#discs').data('source')

@@ -7,19 +7,17 @@ jQuery ->
      sDom: "<'row'<'span6'l><'span6'f>r>t<'row'<'span6'i><'span6'p>>"
      sPaginationType: "bootstrap"
      bJQueryUI: true
-     iDisplayLength: 25
-     bStateSave: true
+     iDisplayLength: 10
 
 jQuery ->
   $('#tracks_table_edit').dataTable
      sDom: "<'row'<'span6'l><'span6'f>r>t<'row'<'span6'i><'span6'p>>"
      sPaginationType: "bootstrap"
      bJQueryUI: true
-     iDisplayLength: 25
+     iDisplayLength: 10
      aoColumnDefs: [
        bSortable: false
        bSearchable: false
        aTargets: [2]
      ]
-     bStateSave: true
 

@@ -8,6 +8,7 @@ jQuery ->
     sPaginationType: "bootstrap"
     bJQueryUI: true
     iDisplayLength: 10
+    bStateSave: true
     aoColumnDefs: [
       bSortable: false
       bSearchable: false
@@ -15,7 +16,6 @@ jQuery ->
     ]
     oLanguage: 
       sProcessing: "<img src='/assets/loading.gif'>"
-#    bStateSave: true
     bProcessing: true
     bServerSide: true
     sAjaxSource: $('#labels').data('source')
@@ -26,6 +26,7 @@ jQuery ->
     sPaginationType: "bootstrap"
     bJQueryUI: true
     iDisplayLength: 10
+    bStateSave: true
     aoColumnDefs: [
       bSortable: false
       bSearchable: false
@@ -37,7 +38,6 @@ jQuery ->
     ]
     oLanguage: 
       sProcessing: "<img src='/assets/loading.gif'>"
-#    bStateSave: true
     bProcessing: true
     bServerSide: true
     sAjaxSource: $('#labels').data('source')
