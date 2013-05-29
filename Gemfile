@@ -17,6 +17,7 @@ gem 'ruby_parser'
 gem 'jquery-datatables-rails', git: 'git://github.com/rweng/jquery-datatables-rails.git'
 gem 'redcarpet'
 gem "pygments.rb", "~> 0.5.0"
+gem 'thin'
 
 group :development, :test do
   gem 'sqlite3'
@@ -26,7 +27,6 @@ group :development, :test do
   gem 'capybara'
   gem 'launchy'
   gem 'rspec-rails'
-  gem 'thin'
 end
 
 group :production do
