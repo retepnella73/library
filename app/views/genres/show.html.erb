@@ -12,9 +12,9 @@
   <p><em>No Discs for this Genre.</em></p>
 <% else %>
   <% if permitted_to? :edit, @disc %>
-    <table id="label_discs_edit_table" class="table table-striped">
+    <table id="label_discs_edit_table" class="table table-striped" data-source="<%= genre_path(@genre, format: 'json') %>" >
   <% else %>
-    <table id="label_discs_table" class="table table-striped">
+    <table id="label_discs_table" class="table table-striped" data-source="<%= genre_path(@genre, format: 'json') %>" >
   <% end %>
     <thead>
       <tr>

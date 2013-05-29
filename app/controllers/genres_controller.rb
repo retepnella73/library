@@ -28,7 +28,10 @@ class GenresController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @genre }
+      format.json { render json: DiscsDatatable.new(view_context, 
+                                                    @genre.discs,
+                                                    (permitted_to? :edit, @disc), 
+                                                    (permitted_to? :destroy, @disc)) }
     end
   end
 
